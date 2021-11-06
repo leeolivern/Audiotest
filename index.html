@@ -1,57 +1,47 @@
+<!doctype html>
+
 <html>
 
-<head>
-	<title>TestPage</title>
-	<link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <title>Randplay</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-<body>
-  
-  <!-- Images -->
-    
-    <img 
-       src="images/button.png" 
-       class="button" 
-       onclick="randomSound();playAudio()" 
-       alt="" 
-    />
-    
+  <body>
+    <!-- Images -->
+
+    <div id="soundtrack"></div>
+    <img src="images/button.png" class="button" onclick="playback();playAudio()" alt="" />
+
     <!-- Audio -->
+
     <audio id="music" src="audio/music.mp3" loop>
-    <audio id="sound1" src="audio/01.mp3">
-    <audio id="sound2" src="audio/02.mp3">
-    <audio id="sound3" src="audio/03.mp3">
-    <audio id="sound4" src="audio/04.mp3">
-    <audio id="sound5" src="audio/05.mp3">
-    <audio id="sound6" src="audio/06.mp3">
-    <audio id="sound7" src="audio/07.mp3">
-    <audio id="sound8" src="audio/08.mp3">
-    <audio id="sound9" src="audio/09.mp3">
-    <audio id="sound10" src="audio/10.mp3">
-    <audio id="sound11" src="audio/11.mp3">
-    <audio id="sound12" src="audio/12.mp3">
-       
-<!-- Javascript -->    
-        
-    
-    <script>
-      var m =document.getElementById("music");
-      mySounds = [ 'sound1', 'sound2', 'sound3', 'sound4', 'sound5', 'sound6', 'sound7', 'sound8', 'sound9', 'sound10', 'sound11', 'sound12' ]
-      function randomSound() {
-        var index = Math.floor(Math.random() * 1000) % mySounds.length;
-        var id = mySounds[index];
-        var audioElement = document.getElementById(id);
-            audioElement.play();
-      }
-      
-      function playAudio(){
-      
+
+      <!-- Javascript -->
+      <script>
+        function playback() {
+          const WhichSong = "audio/" + (Math.floor((Math.random() * 12) + 1)) + ".mp3"
+          document.getElementById('soundtrack').innerHTML = `
+                <audio autoplay
+                  id='background_audio1'>
+                    <source src='${WhichSong}' />
+                </audio>
+                <div>${WhichSong}</div>
+              `;
+          //alert(WhichSong);
+        }
+
+        var m = document.getElementById("music");
+
+        function playAudio() {
+
           m.play();
-          m.volume = 0.375;
-          
-      }
-    </script>
-    
-</body>
+          m.volume = 0.45;
+
+        }
+
+      </script>
+
+  </body>
 
 </html>
